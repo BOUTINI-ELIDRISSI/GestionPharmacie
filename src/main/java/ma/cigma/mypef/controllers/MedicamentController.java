@@ -4,6 +4,7 @@ import ma.cigma.mypef.dtos.ClientDto;
 import ma.cigma.mypef.dtos.MedicamentDto;
 import ma.cigma.mypef.services.MedicamentService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,20 +18,24 @@ public class MedicamentController {
         this.service = service;
     }
     @PostMapping("/create")
-    public Long create(@RequestBody MedicamentDto dto){
+    public String create(@RequestBody MedicamentDto dto){
         return  service.create(dto);
     }
     @PutMapping("/update")
-    public Long update(@RequestBody MedicamentDto dto){
+    public String update(@RequestBody MedicamentDto dto){
         return service.update(dto);
     }
-    @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable("id") long id){
+    @DeleteMapping("/{libelle}")
+    public String delete(@PathVariable("libelle") String libelle){
 
-        return service.delete(id);
+        return service.delete(libelle);
     }
     @GetMapping("/read")
     public List<MedicamentDto> readAll(){
         return service.readAll();
+    }
+    @GetMapping("/findbylibelle")
+    public String findByLibelle(@RequestParam("libelle") String libelle){
+        return service.findByLibelle(libelle);
     }
 }

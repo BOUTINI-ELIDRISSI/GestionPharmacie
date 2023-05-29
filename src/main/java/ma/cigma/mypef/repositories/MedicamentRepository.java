@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository("medicament_repo")
 public interface MedicamentRepository extends JpaRepository<MedicamentEntity, Long> {
+    MedicamentEntity findByLibelle(String Libelle);
 }
