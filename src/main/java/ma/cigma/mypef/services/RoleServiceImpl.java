@@ -37,4 +37,9 @@ public class RoleServiceImpl implements RoleService{
     public List<RoleDto> readAll() {
         return mapper.convertRoleEntitiestoDtos(repository.findAll());
     }
+
+    @Override
+    public RoleDto findByNom(String roleNom) {
+        return mapper.convertRoleEntitytoDto(repository.findByNom(roleNom));
+    }
 }

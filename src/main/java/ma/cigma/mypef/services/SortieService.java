@@ -1,6 +1,7 @@
 package ma.cigma.mypef.services;
 
 import ma.cigma.mypef.dtos.ClientDto;
+import ma.cigma.mypef.dtos.FactureDto;
 import ma.cigma.mypef.dtos.SortieDto;
 import ma.cigma.mypef.dtos.SortieKeyDto;
 
@@ -11,4 +12,6 @@ public interface SortieService {
     Long update(SortieDto dto);
     boolean delete(SortieKeyDto key);
     List<SortieDto> readAll();
+    List<SortieDto> findByFacture(long factureCode);
+    List<SortieDto> findByMedicament(long medicamentId);
 }

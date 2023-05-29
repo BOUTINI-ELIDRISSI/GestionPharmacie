@@ -33,4 +33,8 @@ public class RoleController {
     public List<RoleDto> readAll(){
         return service.readAll();
     }
+    @GetMapping("/findByNom")
+    public RoleDto findByName(@RequestParam("roleName")String roleNom){
+        return service.findByNom(roleNom);
+    }
 }

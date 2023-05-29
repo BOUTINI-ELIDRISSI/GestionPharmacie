@@ -10,4 +10,5 @@ public interface RoleService {
     Long update(RoleDto dto);
     boolean delete(long id);
     List<RoleDto> readAll();
+    RoleDto findByNom(String roleNom);
 }

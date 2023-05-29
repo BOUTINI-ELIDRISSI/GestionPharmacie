@@ -2,8 +2,6 @@ package ma.cigma.mypef.entities;
 
 import javax.persistence.*;
 
-import java.util.List;
-import java.util.Set;
 
 @Entity
 public class MedicamentEntity {

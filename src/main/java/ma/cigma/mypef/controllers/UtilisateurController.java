@@ -1,6 +1,7 @@
 package ma.cigma.mypef.controllers;
 
 import ma.cigma.mypef.dtos.ClientDto;
+import ma.cigma.mypef.dtos.RoleDto;
 import ma.cigma.mypef.dtos.UtilisateurDto;
 import ma.cigma.mypef.services.UtilisateurService;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,5 +33,10 @@ public class UtilisateurController {
     @GetMapping("/read")
     public List<UtilisateurDto> readAll(){
         return service.readAll();
+    }
+
+    @GetMapping("/findbyRole")
+    public List<UtilisateurDto> readbyRole(@RequestParam("roleName") String roleNom){
+        return service.findbyRole(roleNom);
     }
 }

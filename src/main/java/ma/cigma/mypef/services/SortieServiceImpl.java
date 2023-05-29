@@ -1,5 +1,7 @@
 package ma.cigma.mypef.services;
 
+import ma.cigma.mypef.dtos.FactureDto;
+import ma.cigma.mypef.dtos.MedicamentDto;
 import ma.cigma.mypef.dtos.SortieDto;
 import ma.cigma.mypef.dtos.SortieKeyDto;
 import ma.cigma.mypef.mapper.Mapper_class;
@@ -38,5 +40,19 @@ public class SortieServiceImpl implements SortieService{
     @Override
     public List<SortieDto> readAll() {
         return mapper.convertSortieEntitiestoDtos(repository.findAll());
+    }
+
+    @Override
+    public List<SortieDto> findByFacture(long factureCode) {
+        FactureDto facture = new FactureDto();
+        facture.setCode(factureCode);
+        return mapper.convertSortieEntitiestoDtos(repository.findByFacture(mapper.convertFactDtotoEntity(facture)));
+    }
+
+    @Override
+    public List<SortieDto> findByMedicament(long medicamentId) {
+        MedicamentDto medicament = new MedicamentDto();
+        medicament.setId(medicamentId);
+        return mapper.convertSortieEntitiestoDtos(repository.findByMedicament(mapper.convertMedicamentDtotoEntity(medicament)));
     }
 }
