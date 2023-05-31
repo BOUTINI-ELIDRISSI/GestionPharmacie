@@ -27,8 +27,9 @@ public class CommandeServiceImpl implements CommandeService{
         this.clientRepository=clientRepository;
     }
     @Override
-    public Long create(CommandeDto dto) {
-        return mapper.convertCmdEntitytoDto(commandeRepository.save(mapper.convertCmdDtotoEntity(dto))).getCode();
+    public String create(CommandeDto dto) {
+         mapper.convertCmdEntitytoDto(commandeRepository.save(mapper.convertCmdDtotoEntity(dto)));
+         return "ma commande a été enregistré avec succès";
     }
     @Override
     public Long update(CommandeDto dto) {

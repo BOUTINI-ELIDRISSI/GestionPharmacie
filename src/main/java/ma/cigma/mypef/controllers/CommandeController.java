@@ -16,7 +16,7 @@ public class CommandeController {
         this.service = service;
     }
     @PostMapping("/create")
-    public Long create(@RequestBody CommandeDto dto){
+    public String  create(@RequestBody CommandeDto dto){
         return  service.create(dto);
     }
     @PutMapping("/update")
