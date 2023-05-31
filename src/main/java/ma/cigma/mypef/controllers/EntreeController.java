@@ -33,4 +33,9 @@ public class EntreeController {
     public List<EntreeDto> readAll(){
         return service.readAll();
     }
+
+    @GetMapping("/findByMedicament")
+    public List<EntreeDto> findByMedicament(@RequestParam("libelle") String libelle){
+        return service.findByMedicament(libelle);
+    }
 }

@@ -10,4 +10,5 @@ public interface EntreeService {
     Long update(EntreeDto dto);
     boolean delete(long id);
     List<EntreeDto> readAll();
+    List<EntreeDto> findByMedicament(String libelle);
 }
