@@ -17,7 +17,7 @@ public class FactureController {
         this.service = service;
     }
     @PostMapping("/create")
-    public Long create(@RequestBody FactureDto dto){
+    public String create(@RequestBody FactureDto dto){
         return  service.create(dto);
     }
     @PutMapping("/update")
@@ -32,5 +32,10 @@ public class FactureController {
     @GetMapping("/read")
     public List<FactureDto> readAll(){
         return service.readAll();
+    }
+
+    @GetMapping("/findByUtilisateur")
+    public List<FactureDto> findByUtilisateur(@RequestParam("nom")String nom){
+        return service.findByUtilisateur(nom);
     }
 }
