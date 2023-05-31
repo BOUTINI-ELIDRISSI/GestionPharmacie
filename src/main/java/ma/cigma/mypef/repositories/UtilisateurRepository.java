@@ -12,4 +12,5 @@ import java.util.List;
 @Repository("user_repo")
 public interface UtilisateurRepository extends JpaRepository<UtilisateurEntity, Long> {
     List<UtilisateurEntity> findByRole (RoleEntity role);
+    UtilisateurEntity findByNom (String Nom);
 }

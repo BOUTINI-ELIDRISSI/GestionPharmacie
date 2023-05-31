@@ -11,4 +11,6 @@ public interface EntreeService {
     boolean delete(long id);
     List<EntreeDto> readAll();
     List<EntreeDto> findByMedicament(String libelle);
+    List<EntreeDto> findByFournisseur(String nom);
+    List<EntreeDto> findByUtilisateur(String nom);
 }

@@ -38,4 +38,12 @@ public class EntreeController {
     public List<EntreeDto> findByMedicament(@RequestParam("libelle") String libelle){
         return service.findByMedicament(libelle);
     }
+    @GetMapping("/findByFournisseur")
+    public List<EntreeDto> findByFournisseur(@RequestParam("nom") String nom){
+        return service.findByFournisseur(nom);
+    }
+    @GetMapping("/findByUtilisateur")
+    public List<EntreeDto> findByUtilisateur(@RequestParam("nom") String nom){
+        return service.findByUtilisateur(nom);
+    }
 }

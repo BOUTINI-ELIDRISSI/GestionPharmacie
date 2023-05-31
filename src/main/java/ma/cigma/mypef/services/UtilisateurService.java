@@ -12,4 +12,5 @@ public interface UtilisateurService {
     boolean delete(long id);
     List<UtilisateurDto> readAll();
     List<UtilisateurDto> findbyRole(String roleNom);
+    UtilisateurDto findByNom(String Nom);
 }

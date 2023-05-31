@@ -54,4 +54,9 @@ public class UtilisateurServiceImpl implements UtilisateurService{
             return Collections.emptyList();
 
     }
+
+    @Override
+    public UtilisateurDto findByNom(String nom) {
+        return mapper.convertUserEntitytoDto(repository.findByNom(nom));
+    }
 }

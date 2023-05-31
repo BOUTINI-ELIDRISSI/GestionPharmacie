@@ -39,4 +39,9 @@ public class UtilisateurController {
     public List<UtilisateurDto> readbyRole(@RequestParam("roleName") String roleNom){
         return service.findbyRole(roleNom);
     }
+
+    @GetMapping("/findbyNom")
+    public UtilisateurDto readbyNom(@RequestParam("nom") String nom){
+        return service.findByNom(nom);
+    }
 }
