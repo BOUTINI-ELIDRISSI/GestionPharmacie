@@ -20,23 +20,42 @@ public class ClientServiceImpl implements ClientService{
     }
 
     @Override
-    public Long create(ClientDto dto) {
-        return mapper.convertClientEntitytoDto(clientRepository.save(mapper.convertClientDtotoEntity(dto))).getId();
+    public String create(ClientDto dto) {
+        ClientDto client = mapper.convertClientEntitytoDto(clientRepository.findByNom(dto.getNom()));
+        if(client == null){
+            mapper.convertClientEntitytoDto(clientRepository.save(mapper.convertClientDtotoEntity(dto)));
+            return "Le client a été ajouté avec succès";
+        }
+        else
+            return "le client existe déjà";
     }
 
     @Override
-    public Long update(ClientDto dto) {
-        return mapper.convertClientEntitytoDto(clientRepository.save(mapper.convertClientDtotoEntity(dto))).getId();
+    public String update(ClientDto dto) {
+        ClientDto client = mapper.convertClientEntitytoDto(clientRepository.findByNom(dto.getNom()));
+        if(client != null){
+            dto.setId(client.getId());
+            mapper.convertClientEntitytoDto(clientRepository.save(mapper.convertClientDtotoEntity(dto)));
+            return "Le client a été modifié avec succès";
+        }
+        else
+            return "le client n'existe pas";
     }
 
     @Override
-    public boolean delete(long id) {
+    public String delete(long id) {
         clientRepository.deleteById(id);
-        return true;
+        return "Le client a été supprimé avec succès";
     }
 
     @Override
     public List<ClientDto> readAll() {
         return mapper.convertClientEntitiestoDtos(clientRepository.findAll());
     }
+
+    @Override
+    public ClientDto findByNom(String nom) {
+        return mapper.convertClientEntitytoDto(clientRepository.findByNom(nom));
+    }
+
 }

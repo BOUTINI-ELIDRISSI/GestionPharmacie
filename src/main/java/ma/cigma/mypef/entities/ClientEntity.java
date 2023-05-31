@@ -16,6 +16,7 @@ public class ClientEntity {
     private String email;
     private String adresse;
     private String tele;
+    private String mot_de_passe;
 
     public long getId() {
         return id;
@@ -71,5 +72,13 @@ public class ClientEntity {
 
     public void setTele(String tele) {
         this.tele = tele;
+    }
+
+    public String getMot_de_passe() {
+        return mot_de_passe;
+    }
+
+    public void setMot_de_passe(String mot_de_passe) {
+        this.mot_de_passe = mot_de_passe;
     }
 }

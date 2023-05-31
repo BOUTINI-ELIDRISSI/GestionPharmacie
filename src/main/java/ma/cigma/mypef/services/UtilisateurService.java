@@ -7,9 +7,9 @@ import ma.cigma.mypef.dtos.UtilisateurDto;
 import java.util.List;
 
 public interface UtilisateurService {
-    Long create(UtilisateurDto dto);
-    Long update(UtilisateurDto dto);
-    boolean delete(long id);
+    String create(UtilisateurDto dto);
+    String update(UtilisateurDto dto);
+    String delete(long id);
     List<UtilisateurDto> readAll();
     List<UtilisateurDto> findbyRole(String roleNom);
     UtilisateurDto findByNom(String Nom);

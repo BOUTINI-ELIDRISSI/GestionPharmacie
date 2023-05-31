@@ -18,15 +18,15 @@ public class UtilisateurController {
         this.service = service;
     }
     @PostMapping("/create")
-    public Long create(@RequestBody UtilisateurDto dto){
+    public String create(@RequestBody UtilisateurDto dto){
         return  service.create(dto);
     }
     @PutMapping("/update")
-    public Long update(@RequestBody UtilisateurDto dto){
+    public String update(@RequestBody UtilisateurDto dto){
         return service.update(dto);
     }
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable("id") long id){
+    public String delete(@PathVariable("id") long id){
 
         return service.delete(id);
     }

@@ -25,19 +25,31 @@ public class UtilisateurServiceImpl implements UtilisateurService{
     }
 
     @Override
-    public Long create(UtilisateurDto dto) {
-        return mapper.convertUserEntitytoDto(repository.save(mapper.convertUserDtotoEntity(dto))).getId();
+    public String create(UtilisateurDto dto) {
+        UtilisateurDto user = mapper.convertUserEntitytoDto(repository.findByNom(dto.getNom()));
+        if(user == null){
+            mapper.convertUserEntitytoDto(repository.save(mapper.convertUserDtotoEntity(dto)));
+            return "L'utilisateur a été ajouté avec succès";
+        }
+        else
+            return "L'utilisateur existe déjà";
     }
 
     @Override
-    public Long update(UtilisateurDto dto) {
-        return mapper.convertUserEntitytoDto(repository.save(mapper.convertUserDtotoEntity(dto))).getId();
+    public String  update(UtilisateurDto dto) {
+        UtilisateurDto user = mapper.convertUserEntitytoDto(repository.findByNom(dto.getNom()));
+        if(user != null){
+            mapper.convertUserEntitytoDto(repository.save(mapper.convertUserDtotoEntity(dto)));
+            return "L'utilisateur a été modifié avec succès";
+        }
+        else
+            return "L'utilisateur n'existe pas";
     }
 
     @Override
-    public boolean delete(long id) {
+    public String delete(long id) {
         repository.deleteById(id);
-        return true;
+        return "L'utilisateur a été supprimé avec succès";
     }
 
     @Override

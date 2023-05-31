@@ -1,9 +1,7 @@
 package ma.cigma.mypef.entities;
 
 import javax.persistence.*;
-import java.time.DateTimeException;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 public class CommandeEntity {

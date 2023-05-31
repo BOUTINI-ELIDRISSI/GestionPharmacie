@@ -9,4 +9,6 @@ public interface CommandeService {
     Long update(CommandeDto dto);
     boolean delete(long id);
     List<CommandeDto> readAll();
+    List<CommandeDto> findByUtilisateur(String nom);
+    List<CommandeDto> findByClient(String nom);
 }

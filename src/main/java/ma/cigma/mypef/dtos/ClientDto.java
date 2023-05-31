@@ -8,6 +8,7 @@ public class ClientDto {
     private String email;
     private String adresse;
     private String tele;
+    private String mot_de_passe;
 
     public long getId() {
         return id;
@@ -65,6 +66,14 @@ public class ClientDto {
         this.tele = tele;
     }
 
+    public String getMot_de_passe() {
+        return mot_de_passe;
+    }
+
+    public void setMot_de_passe(String mot_de_passe) {
+        this.mot_de_passe = mot_de_passe;
+    }
+
     @Override
     public String toString() {
         return "ClientDto{" +
@@ -75,6 +84,7 @@ public class ClientDto {
                 ", email='" + email + '\'' +
                 ", adresse='" + adresse + '\'' +
                 ", tele='" + tele + '\'' +
+                ", mot_de_passe='" + mot_de_passe + '\'' +
                 '}';
     }
 }

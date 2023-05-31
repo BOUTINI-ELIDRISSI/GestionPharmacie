@@ -1,6 +1,5 @@
 package ma.cigma.mypef.controllers;
 
-import ma.cigma.mypef.dtos.ClientDto;
 import ma.cigma.mypef.dtos.CommandeDto;
 import ma.cigma.mypef.services.CommandeService;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,6 +31,14 @@ public class CommandeController {
     @GetMapping("/read")
     public List<CommandeDto> readAll(){
         return service.readAll();
+    }
+    @GetMapping("/findByUtilisateur")
+    public List<CommandeDto> findByUtilisateur(@RequestParam("nom")String nom){
+        return service.findByUtilisateur(nom);
+    }
+    @GetMapping("/findByClient")
+    public List<CommandeDto> findByClient(@RequestParam("nom")String nom){
+        return service.findByClient(nom);
     }
 }
 

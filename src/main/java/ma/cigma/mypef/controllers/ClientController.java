@@ -16,20 +16,24 @@ public class ClientController {
         this.service = service;
     }
     @PostMapping("/create")
-    public Long create(@RequestBody ClientDto dto){
+    public String create(@RequestBody ClientDto dto){
         return  service.create(dto);
     }
     @PutMapping("/update")
-    public Long update(@RequestBody ClientDto dto){
+    public String update(@RequestBody ClientDto dto){
         return service.update(dto);
     }
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable("id") long id){
+    public String delete(@PathVariable("id") long id){
 
         return service.delete(id);
     }
     @GetMapping("/read")
     public List<ClientDto> readAll(){
         return service.readAll();
+    }
+    @GetMapping("/findByNom")
+    public ClientDto findByNom(@RequestParam("nom")String nom){
+        return service.findByNom(nom);
     }
 }

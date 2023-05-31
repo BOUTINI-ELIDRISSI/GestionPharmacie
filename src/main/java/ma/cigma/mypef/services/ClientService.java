@@ -5,9 +5,10 @@ import ma.cigma.mypef.dtos.ClientDto;
 import java.util.List;
 
 public interface ClientService {
-    Long create(ClientDto dto);
-    Long update(ClientDto dto);
-    boolean delete(long id);
+    String create(ClientDto dto);
+    String update(ClientDto dto);
+    String delete(long id);
     List<ClientDto> readAll();
+    ClientDto findByNom(String nom);
 
 }
