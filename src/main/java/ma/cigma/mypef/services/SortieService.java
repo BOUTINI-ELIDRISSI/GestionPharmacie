@@ -8,10 +8,10 @@ import ma.cigma.mypef.dtos.SortieKeyDto;
 import java.util.List;
 
 public interface SortieService {
-    Long create(SortieDto dto);
-    Long update(SortieDto dto);
-    boolean delete(SortieKeyDto key);
+    String create(SortieDto dto);
+    String update(SortieDto dto);
+    boolean delete(String libelle, long code);
     List<SortieDto> readAll();
     List<SortieDto> findByFacture(long factureCode);
-    List<SortieDto> findByMedicament(long medicamentId);
+    List<SortieDto> findByMedicament(String libelle);
 }

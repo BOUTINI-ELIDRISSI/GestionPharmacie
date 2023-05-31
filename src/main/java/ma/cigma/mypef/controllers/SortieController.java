@@ -2,7 +2,6 @@ package ma.cigma.mypef.controllers;
 
 import ma.cigma.mypef.dtos.SortieDto;
 import ma.cigma.mypef.dtos.SortieKeyDto;
-import ma.cigma.mypef.dtos.UtilisateurDto;
 import ma.cigma.mypef.services.SortieService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -19,19 +18,18 @@ public class SortieController {
     }
     //ajouter
     @PostMapping("/create")
-    public Long create(@RequestBody SortieDto dto){
+    public String create(@RequestBody SortieDto dto){
         return  service.create(dto);
     }
     //moudifier
     @PutMapping("/update")
-    public Long update(@RequestBody SortieDto dto){
+    public String update(@RequestBody SortieDto dto){
         return service.update(dto);
     }
     //supprimer
     @DeleteMapping("/{med}/{fact}")
-    public boolean delete(@PathVariable("med") long med, @PathVariable("fact") long fact){
-        SortieKeyDto keyDto=new SortieKeyDto(med, fact);
-        return service.delete(keyDto);
+    public boolean delete(@PathVariable("med") String libelle, @PathVariable("fact") long fact){
+        return service.delete(libelle, fact);
     }
     //affichier tous
     @GetMapping("/read")
@@ -45,7 +43,7 @@ public class SortieController {
     }
     //afficher par medicament
     @GetMapping("/findbyMedicament")
-    public List<SortieDto> readbyMedicament(@RequestParam("medicamentId") long medicamentId){
-        return service.findByMedicament(medicamentId);
+    public List<SortieDto> readbyMedicament(@RequestParam("medicamentLibelle") String libelle){
+        return service.findByMedicament(libelle);
     }
 }
