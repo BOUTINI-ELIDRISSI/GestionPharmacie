@@ -19,25 +19,53 @@ public class FournisseurServiceImpl implements FournisseurService{
         this.repository = repository;
     }
 
-
+    //ajouter fournisseur
     @Override
-    public Long create(FournisseurDto dto) {
-        return mapper.convertFournisseurEntitytoDto(repository.save(mapper.convertFournisseurDtotoEntity(dto))).getId();
+    public String create(FournisseurDto dto) {
+        FournisseurDto fournisseur = mapper.convertFournisseurEntitytoDto(repository.findByNom(dto.getNom()));
+        if (fournisseur == null){
+            mapper.convertFournisseurEntitytoDto(repository.save(mapper.convertFournisseurDtotoEntity(dto)));
+            return "Le fournisseur a été ajouté avec succès";
+        }
+        else
+            return "Le fournisseur existe déjà";
     }
-
+    //modifier fournisseur
     @Override
-    public Long update(FournisseurDto dto) {
-        return mapper.convertFournisseurEntitytoDto(repository.save(mapper.convertFournisseurDtotoEntity(dto))).getId();
+    public String update(FournisseurDto dto) {
+        FournisseurDto fournisseur = mapper.convertFournisseurEntitytoDto(repository.findByNom(dto.getNom()));
+        if (fournisseur != null){
+            dto.setId(fournisseur.getId());
+            mapper.convertFournisseurEntitytoDto(repository.save(mapper.convertFournisseurDtotoEntity(dto)));
+            return "Le fournisseur a été modifié avec succès";
+        }
+        else
+            return "Le fournisseur n'existe pas";
     }
-
+    //supprimer fournisseur
     @Override
-    public boolean delete(long id) {
-        repository.deleteById(id);
-        return true;
-    }
+    public String delete(String nom) {
+        FournisseurDto fournisseur = mapper.convertFournisseurEntitytoDto(repository.findByNom(nom));
+        if (fournisseur != null){
+            repository.deleteById(fournisseur.getId());
+            return "Le fournisseur a été supprimé avec succès";
+        }
+        else
+            return "Le fournisseur n'existe pas";
 
+    }
+    //afficher list des fournisseurs
     @Override
     public List<FournisseurDto> readAll() {
         return mapper.convertFournisseurEntitiestoDtos(repository.findAll());
+    }
+    //afficher fournisseur by nom
+    @Override
+    public String findByNom(String nom) {
+        FournisseurDto dto=mapper.convertFournisseurEntitytoDto(repository.findByNom(nom));
+        if (dto != null)
+            return dto.toString();
+        else
+            return "le fournisseur n'existe pas";
     }
 }

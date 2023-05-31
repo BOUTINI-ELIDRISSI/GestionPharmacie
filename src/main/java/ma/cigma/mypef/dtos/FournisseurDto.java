@@ -2,7 +2,7 @@ package ma.cigma.mypef.dtos;
 
 public class FournisseurDto {
     private long id;
-    private String nom_F;
+    private String nom;
     private String tele_F;
     private String email_F;
     private String adresse_F;
@@ -15,12 +15,12 @@ public class FournisseurDto {
         this.id = id;
     }
 
-    public String getNom_F() {
-        return nom_F;
+    public String getNom() {
+        return nom;
     }
 
-    public void setNom_F(String nom_F) {
-        this.nom_F = nom_F;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public String getTele_F() {
@@ -45,5 +45,16 @@ public class FournisseurDto {
 
     public void setAdresse_F(String adresse_F) {
         this.adresse_F = adresse_F;
+    }
+
+    @Override
+    public String toString() {
+        return "FournisseurDto{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", tele_F='" + tele_F + '\'' +
+                ", email_F='" + email_F + '\'' +
+                ", adresse_F='" + adresse_F + '\'' +
+                '}';
     }
 }

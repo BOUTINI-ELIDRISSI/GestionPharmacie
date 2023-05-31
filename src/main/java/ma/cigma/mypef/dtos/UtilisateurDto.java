@@ -3,6 +3,7 @@ package ma.cigma.mypef.dtos;
 
 public class UtilisateurDto {
     private long id;
+    private String nom;
     private String email;
     private String  mot_de_passe;
     private RoleDto role;
@@ -13,6 +14,14 @@ public class UtilisateurDto {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public String getEmail() {
@@ -43,6 +52,7 @@ public class UtilisateurDto {
     public String toString() {
         return "UtilisateurDto{" +
                 "id=" + id +
+                ", nom='" + nom + '\'' +
                 ", email='" + email + '\'' +
                 ", mot_de_passe='" + mot_de_passe + '\'' +
                 ", role=" + role +

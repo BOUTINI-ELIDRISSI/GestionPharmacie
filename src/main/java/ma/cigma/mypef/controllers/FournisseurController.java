@@ -17,20 +17,24 @@ public class FournisseurController {
         this.service = service;
     }
     @PostMapping("/create")
-    public Long create(@RequestBody FournisseurDto dto){
+    public String create(@RequestBody FournisseurDto dto){
         return  service.create(dto);
     }
     @PutMapping("/update")
-    public Long update(@RequestBody FournisseurDto dto){
+    public String update(@RequestBody FournisseurDto dto){
         return service.update(dto);
     }
-    @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable("id") long id){
+    @DeleteMapping("/{nom_F}")
+    public String delete(@PathVariable("nom_F") String nom_F){
 
-        return service.delete(id);
+        return service.delete(nom_F);
     }
     @GetMapping("/read")
     public List<FournisseurDto> readAll(){
         return service.readAll();
+    }
+    @GetMapping("/findByNom")
+    public String findByNom(@RequestParam("nom") String nom){
+        return service.findByNom(nom);
     }
 }

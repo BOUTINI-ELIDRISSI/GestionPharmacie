@@ -5,8 +5,9 @@ import ma.cigma.mypef.dtos.FournisseurDto;
 import java.util.List;
 
 public interface FournisseurService {
-    Long create(FournisseurDto dto);
-    Long update(FournisseurDto dto);
-    boolean delete(long id);
+    String create(FournisseurDto dto);
+    String update(FournisseurDto dto);
+    String delete(String nom_F);
     List<FournisseurDto> readAll();
+    String findByNom(String nom);
 }

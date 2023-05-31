@@ -7,7 +7,8 @@ public class FournisseurEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String nom_F;
+    @Column(name = "nom_F")
+    private String nom;
     private String tele_F;
     private String email_F;
     private String adresse_F;
@@ -20,12 +21,12 @@ public class FournisseurEntity {
         this.id = id;
     }
 
-    public String getNom_F() {
-        return nom_F;
+    public String getNom() {
+        return nom;
     }
 
-    public void setNom_F(String nom_F) {
-        this.nom_F = nom_F;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public String getTele_F() {

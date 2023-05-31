@@ -7,6 +7,7 @@ public class UtilisateurEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String nom;
     private String email;
     private String  mot_de_passe;
     @ManyToOne
@@ -18,6 +19,14 @@ public class UtilisateurEntity {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public String getEmail() {
