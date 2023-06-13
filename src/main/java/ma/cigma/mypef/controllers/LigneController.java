@@ -3,6 +3,7 @@ package ma.cigma.mypef.controllers;
 import ma.cigma.mypef.dtos.ClientDto;
 import ma.cigma.mypef.dtos.LigneDto;
 import ma.cigma.mypef.dtos.LigneKeyDto;
+import ma.cigma.mypef.dtos.SortieDto;
 import ma.cigma.mypef.services.LigneService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -18,20 +19,30 @@ public class LigneController {
         this.service = service;
     }
     @PostMapping("/create")
-    public Long create(@RequestBody LigneDto dto){
+    public String create(@RequestBody LigneDto dto){
         return  service.create(dto);
     }
     @PutMapping("/update")
-    public Long update(@RequestBody LigneDto dto){
+    public String update(@RequestBody LigneDto dto){
         return service.update(dto);
     }
     @DeleteMapping("/{med}/{cmd}")
-    public boolean delete(@PathVariable("med") long med, @PathVariable("cmd") long cmd){
-        LigneKeyDto keyDto=new LigneKeyDto(med,cmd);
-        return service.delete(keyDto);
+    public boolean delete(@PathVariable("med") String med, @PathVariable("cmd") long cmd){
+        return service.delete(med,cmd);
     }
     @GetMapping("/read")
     public List<LigneDto> readAll(){
         return service.readAll();
+    }
+
+    //afficher par facture
+    @GetMapping("/findbyCommand")
+    public List<LigneDto> findByCommand(@RequestParam("commandCode") long commandeCode){
+        return service.findByCommand(commandeCode);
+    }
+    //afficher par medicament
+    @GetMapping("/findbyMedicament")
+    public List<LigneDto> findByMedicament(@RequestParam("medicamentLibelle") String libelle){
+        return service.findByMedicament(libelle);
     }
 }
