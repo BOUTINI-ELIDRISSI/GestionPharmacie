@@ -11,5 +11,6 @@ public interface EntreeRepository extends JpaRepository<EntreeEntity, Long> {
     List<EntreeEntity> findByMedicament(MedicamentEntity medicament);
     List<EntreeEntity> findByFournisseur(FournisseurEntity fournisseur);
     List<EntreeEntity> findByUtilisateur(UtilisateurEntity utilisateur);
+    EntreeEntity findById(long id);
 
 }
