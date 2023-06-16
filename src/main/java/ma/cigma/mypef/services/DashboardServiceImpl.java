@@ -1,9 +1,6 @@
 package ma.cigma.mypef.services;
 
-import ma.cigma.mypef.dtos.EntreeDto;
-import ma.cigma.mypef.dtos.FactureDto;
-import ma.cigma.mypef.dtos.MedicamentDto;
-import ma.cigma.mypef.dtos.SortieDto;
+import ma.cigma.mypef.dtos.*;
 import ma.cigma.mypef.mapper.Mapper_class;
 import ma.cigma.mypef.repositories.*;
 import org.mapstruct.factory.Mappers;
@@ -23,17 +20,19 @@ public class DashboardServiceImpl implements DashboardService{
     public MedicamentRepository medicamentRepository;
     public ClientRepository clientRepository;
     public FactureRepository factureRepository;
+    public LigneRepository ligneRepository;
     public Mapper_class mapper= Mappers.getMapper(Mapper_class.class);
 
 
     public DashboardServiceImpl(@Qualifier("sortie_repo") SortieRepository sortieRepository,@Qualifier("entree_repo") EntreeRepository entreeRepository,
                                 @Qualifier("medicament_repo")MedicamentRepository medicamentRepository,@Qualifier("client_repo") ClientRepository clientRepository,
-                                @Qualifier("fact_repo") FactureRepository factureRepository) {
+                                @Qualifier("fact_repo") FactureRepository factureRepository,@Qualifier("ligne_repo")LigneRepository ligneRepository) {
         this.sortieRepository = sortieRepository;
         this.entreeRepository = entreeRepository;
         this.medicamentRepository = medicamentRepository;
         this.clientRepository = clientRepository;
         this.factureRepository=factureRepository;
+        this.ligneRepository=ligneRepository;
     }
 
     @Override
@@ -112,9 +111,10 @@ public class DashboardServiceImpl implements DashboardService{
         List<EntreeDto> entree = mapper.convertEntreeEntitiestoDtos(entreeRepository.findAll());
         List<MedicamentDto> medicament = mapper.convertMedicamentEntitiestoDtos(medicamentRepository.findAll());
         List<SortieDto> sortie = mapper.convertSortieEntitiestoDtos(sortieRepository.findAll());
+        List<LigneDto> ligne = mapper.convertLigneEntitiestoDtos(ligneRepository.findAll());
 
         for(MedicamentDto med : medicament) {
-            int qte_e = 0, qte_s = 0;
+            int qte_e = 0, qte_s = 0 , qte_l = 0;
             for (int i = 0; i < entree.size(); i++) {
                 if (entree.get(i).getMedicament().getId() == med.getId())
                     qte_e += entree.get(i).getQuantite();
@@ -123,7 +123,11 @@ public class DashboardServiceImpl implements DashboardService{
                 if (sortie.get(i).getMedicament().getId() == med.getId())
                     qte_s += sortie.get(i).getQuantite();
             }
-            if ((qte_e - qte_s) <= 0)
+            for (int i = 0; i < ligne.size(); i++) {
+                if (ligne.get(i).getMedicament().getId() == med.getId())
+                    qte_l += ligne.get(i).getQuantite();
+            }
+            if ((qte_e - (qte_s + qte_l)) <= 0)
                 qte_ex+=1;
         }
         return qte_ex;
