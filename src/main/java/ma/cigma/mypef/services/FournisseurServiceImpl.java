@@ -44,14 +44,10 @@ public class FournisseurServiceImpl implements FournisseurService{
     }
     //supprimer fournisseur
     @Override
-    public String delete(String nom) {
-        FournisseurDto fournisseur = mapper.convertFournisseurEntitytoDto(repository.findByNom(nom));
-        if (fournisseur != null){
-            repository.deleteById(fournisseur.getId());
-            return "Le fournisseur a été supprimé avec succès";
-        }
-        else
-            return "Le fournisseur n'existe pas";
+    public String delete(long id) {
+       repository.deleteById(id);
+        return "Le fournisseur a été supprimé avec succès";
+
 
     }
     //afficher list des fournisseurs

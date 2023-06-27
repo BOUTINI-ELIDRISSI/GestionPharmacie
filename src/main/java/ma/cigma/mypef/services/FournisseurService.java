@@ -7,7 +7,7 @@ import java.util.List;
 public interface FournisseurService {
     String create(FournisseurDto dto);
     String update(FournisseurDto dto);
-    String delete(String nom_F);
+    String delete(long id);
     List<FournisseurDto> readAll();
     String findByNom(String nom);
 }

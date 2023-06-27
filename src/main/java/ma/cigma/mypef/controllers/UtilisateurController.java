@@ -22,7 +22,7 @@ public class UtilisateurController {
         return  service.create(dto);
     }
     @PutMapping("/update")
-    public String update(@RequestBody UtilisateurDto dto){
+        public String update(@RequestBody UtilisateurDto dto){
         return service.update(dto);
     }
     @DeleteMapping("/{id}")
@@ -43,5 +43,10 @@ public class UtilisateurController {
     @GetMapping("/findbyNom")
     public UtilisateurDto readbyNom(@RequestParam("nom") String nom){
         return service.findByNom(nom);
+    }
+
+    @GetMapping("/findbyEmail")
+    public UtilisateurDto readbyEmail(@RequestParam("email") String email){
+        return service.findByEmail(email);
     }
 }

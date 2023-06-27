@@ -71,4 +71,9 @@ public class UtilisateurServiceImpl implements UtilisateurService{
     public UtilisateurDto findByNom(String nom) {
         return mapper.convertUserEntitytoDto(repository.findByNom(nom));
     }
+
+    @Override
+    public UtilisateurDto findByEmail(String email) {
+        return mapper.convertUserEntitytoDto(repository.findByEmail(email));
+    }
 }

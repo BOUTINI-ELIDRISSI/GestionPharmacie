@@ -12,5 +12,6 @@ public interface UtilisateurService {
     String delete(long id);
     List<UtilisateurDto> readAll();
     List<UtilisateurDto> findbyRole(String roleNom);
-    UtilisateurDto findByNom(String Nom);
+    UtilisateurDto findByNom(String nom);
+    UtilisateurDto findByEmail(String email);
 }

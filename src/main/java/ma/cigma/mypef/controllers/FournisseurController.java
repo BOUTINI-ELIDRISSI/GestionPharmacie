@@ -24,10 +24,10 @@ public class FournisseurController {
     public String update(@RequestBody FournisseurDto dto){
         return service.update(dto);
     }
-    @DeleteMapping("/{nom_F}")
-    public String delete(@PathVariable("nom_F") String nom_F){
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") long id){
 
-        return service.delete(nom_F);
+        return service.delete(id);
     }
     @GetMapping("/read")
     public List<FournisseurDto> readAll(){
