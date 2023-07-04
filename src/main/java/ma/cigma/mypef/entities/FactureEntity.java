@@ -11,7 +11,8 @@ public class FactureEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long code;
-    private Date date_Fact;
+    @Column(name = "date_Fact")
+    private Date datefact;
     private float prix_total;
     @ManyToOne
     private UtilisateurEntity utilisateur;
@@ -24,12 +25,12 @@ public class FactureEntity {
         this.code = code;
     }
 
-    public Date getDate_Fact() {
-        return date_Fact;
+    public Date getDatefact() {
+        return datefact;
     }
 
-    public void setDate_Fact(Date date_Fact) {
-        this.date_Fact = date_Fact;
+    public void setDatefact(Date datefact) {
+        this.datefact = datefact;
     }
 
     public float getPrix_total() {

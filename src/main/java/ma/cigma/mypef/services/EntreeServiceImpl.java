@@ -10,6 +10,7 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service("entree_service")
@@ -66,4 +67,30 @@ public class EntreeServiceImpl implements EntreeService{
         UtilisateurDto utilisateur = mapper.convertUserEntitytoDto(utilisateurRepository.findByNom(nom));
         return mapper.convertEntreeEntitiestoDtos(entreeRepository.findByUtilisateur(mapper.convertUserDtotoEntity(utilisateur)));
     }
+
+    @Override
+    public EntreeDto findByLastEntree(String libelle) {
+        List<EntreeDto> entree = findByMedicament(libelle);
+
+
+            Date max = null;
+            long id = 0;
+            for (int i = 0; i < entree.size(); i++) {
+                if (max == null) {
+                        max = entree.get(i).getDate_entree();
+                        id = entree.get(i).getId();
+                    } else {
+                        if (max.compareTo(entree.get(i).getDate_entree()) < 0) {
+                            max = entree.get(i).getDate_entree();
+                            id = entree.get(i).getId();
+                        }
+                    }
+
+
+            }
+            return mapper.convertEntreeEntitytoDto(entreeRepository.findById(id));
+
+    }
+
+
 }

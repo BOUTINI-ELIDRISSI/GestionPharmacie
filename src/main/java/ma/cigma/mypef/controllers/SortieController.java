@@ -21,15 +21,19 @@ public class SortieController {
     public String create(@RequestBody SortieDto dto){
         return  service.create(dto);
     }
+    @PostMapping("/create_table")
+    public String create_table(@RequestBody List<SortieDto> dtos){
+        return  service.create_table(dtos);
+    }
     //moudifier
     @PutMapping("/update")
     public String update(@RequestBody SortieDto dto){
         return service.update(dto);
     }
     //supprimer
-    @DeleteMapping("/{med}/{fact}")
-    public boolean delete(@PathVariable("med") String libelle, @PathVariable("fact") long fact){
-        return service.delete(libelle, fact);
+    @DeleteMapping("{fact}")
+    public boolean delete( @PathVariable("fact") long fact){
+        return service.delete(fact);
     }
     //affichier tous
     @GetMapping("/read")

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class FactureDto {
     private long code;
-    private Date date_Fact;
+    private Date datefact;
     private float prix_total;
     private UtilisateurEntity utilisateur;
 
@@ -21,12 +21,12 @@ public class FactureDto {
         this.code = code;
     }
 
-    public Date getDate_Fact() {
-        return date_Fact;
+    public Date getDatefact() {
+        return datefact;
     }
 
-    public void setDate_Fact(Date date_Fact) {
-        this.date_Fact = date_Fact;
+    public void setDatefact(Date datefact) {
+        this.datefact = datefact;
     }
 
     public float getPrix_total() {
@@ -50,7 +50,7 @@ public class FactureDto {
     public String toString() {
         return "FactureDto{" +
                 "code=" + code +
-                ", date_Fact=" + date_Fact +
+                ", datefact=" + datefact +
                 ", prix_total=" + prix_total +
                 ", utilisateur=" + utilisateur +
                 '}';

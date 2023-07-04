@@ -46,4 +46,8 @@ public class EntreeController {
     public List<EntreeDto> findByUtilisateur(@RequestParam("nom") String nom){
         return service.findByUtilisateur(nom);
     }
+    @GetMapping("/findByLastEntree")
+    public EntreeDto findByLastEntree(@RequestParam("libelle") String libelle){
+        return service.findByLastEntree(libelle);
+    }
 }

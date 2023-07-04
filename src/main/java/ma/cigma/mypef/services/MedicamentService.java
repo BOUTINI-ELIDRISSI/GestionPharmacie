@@ -11,11 +11,11 @@ public interface MedicamentService {
     String create(MedicamentDto dto);
     //modifier medicament
     String update(MedicamentDto dto);
-    //supprimer medicament by libelle
-    String delete(String libelle);
+    //supprimer medicament by id
+    String delete(long id);
     //afficher list des medicament
     List<MedicamentDto> readAll();
     //afficher par libelle
 
-    String findByLibelle(String libelle);
+    MedicamentDto findByLibelle(String libelle);
 }

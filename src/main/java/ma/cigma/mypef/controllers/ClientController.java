@@ -36,4 +36,8 @@ public class ClientController {
     public ClientDto findByNom(@RequestParam("nom")String nom){
         return service.findByNom(nom);
     }
+    @GetMapping("/findByEmail")
+    public ClientDto findByEmail(@RequestParam("email")String email){
+        return service.findByEmail(email);
+    }
 }

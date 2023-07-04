@@ -22,13 +22,13 @@ public class MedicamentServiceImpl implements MedicamentService{
     //ajouter medicament
     @Override
     public String create(MedicamentDto dto) {
-        MedicamentDto obj =mapper.convertMedicamentEntitytoDto(repository.findByLibelle(dto.getLibelle()));
-        if(obj ==null){
-            mapper.convertMedicamentEntitytoDto(repository.save(mapper.convertMedicamentDtotoEntity(obj)));
+        //MedicamentDto obj =mapper.convertMedicamentEntitytoDto(repository.findByLibelle(dto.getLibelle()));
+        //if(obj ==null){
+            mapper.convertMedicamentEntitytoDto(repository.save(mapper.convertMedicamentDtotoEntity(dto)));
             return "Le médicament a été ajouté avec succès";
-        }
-        else
-            return "Le medicament est deja existe";
+        //}
+       // else
+          //  return "Le medicament est deja existe";
 
     }
     //modifier medicament
@@ -45,14 +45,11 @@ public class MedicamentServiceImpl implements MedicamentService{
     }
     //supprimer medicament by id
     @Override
-    public String delete(String libelle) {
-        MedicamentDto obj = mapper.convertMedicamentEntitytoDto(repository.findByLibelle(libelle));
-        if(obj != null){
-            repository.deleteById(obj.getId());
+    public String delete(long id) {
+
+            repository.deleteById(id);
             return "Le médicament a été supprimer avec succès";
-        }
-        else
-            return "Le medicament n'existe pas";
+
     }
     //afficher list des medicament
     @Override
@@ -61,11 +58,8 @@ public class MedicamentServiceImpl implements MedicamentService{
     }
     //afficher medicament by libelle
     @Override
-    public String findByLibelle(String libelle) {
-        MedicamentDto dto = mapper.convertMedicamentEntitytoDto(repository.findByLibelle(libelle));
-        if(dto != null)
-            return dto.toString();
-        else
-            return "ce medicament n'existe pas";
+    public MedicamentDto findByLibelle(String libelle) {
+        return mapper.convertMedicamentEntitytoDto(repository.findByLibelle(libelle));
+
     }
 }

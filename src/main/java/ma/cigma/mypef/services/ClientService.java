@@ -10,5 +10,7 @@ public interface ClientService {
     String delete(long id);
     List<ClientDto> readAll();
     ClientDto findByNom(String nom);
+    ClientDto findByEmail(String email);
+
 
 }

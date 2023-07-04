@@ -25,17 +25,17 @@ public class MedicamentController {
     public String update(@RequestBody MedicamentDto dto){
         return service.update(dto);
     }
-    @DeleteMapping("/{libelle}")
-    public String delete(@PathVariable("libelle") String libelle){
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") long id){
 
-        return service.delete(libelle);
+        return service.delete(id);
     }
     @GetMapping("/read")
     public List<MedicamentDto> readAll(){
         return service.readAll();
     }
     @GetMapping("/findbylibelle")
-    public String findByLibelle(@RequestParam("libelle") String libelle){
+    public MedicamentDto findByLibelle(@RequestParam("libelle") String libelle){
         return service.findByLibelle(libelle);
     }
 }

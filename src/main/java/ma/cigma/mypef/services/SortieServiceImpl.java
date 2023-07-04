@@ -5,6 +5,7 @@ import ma.cigma.mypef.dtos.MedicamentDto;
 import ma.cigma.mypef.dtos.SortieDto;
 import ma.cigma.mypef.dtos.SortieKeyDto;
 import ma.cigma.mypef.mapper.Mapper_class;
+import ma.cigma.mypef.repositories.FactureRepository;
 import ma.cigma.mypef.repositories.MedicamentRepository;
 import ma.cigma.mypef.repositories.SortieRepository;
 import org.mapstruct.factory.Mappers;
@@ -16,11 +17,14 @@ import java.util.List;
 @Service("sortie_service")
 public class SortieServiceImpl implements SortieService{
     public SortieRepository repository;
+    public FactureRepository factureRepository;
     public MedicamentRepository medicamentRepository;
     public Mapper_class mapper= Mappers.getMapper(Mapper_class.class);
 
-    public SortieServiceImpl(@Qualifier("sortie_repo") SortieRepository repository,@Qualifier("medicament_repo") MedicamentRepository medicamentRepository) {
+    public SortieServiceImpl(@Qualifier("sortie_repo") SortieRepository repository,@Qualifier("medicament_repo") MedicamentRepository medicamentRepository,
+                             @Qualifier("fact_repo") FactureRepository factureRepository) {
         this.repository = repository;
+        this.factureRepository=factureRepository;
         this.medicamentRepository=medicamentRepository;
     }
 
@@ -41,15 +45,17 @@ public class SortieServiceImpl implements SortieService{
         else
             return "Le médicament est déjà à la facture";
 
-       /* lst.stream().filter(obj -> obj.getId().getFacturecode() == dto.getId().getFacturecode());
-        if(lst == null){
-            mapper.convertSortieEntitytoDto(repository.save(mapper.convertSortieDtotoEntity(dto)));
-            return "le médicament a été ajouté à la facture";
-        }
-        else
-            return "Le médicament est déjà à la facture";*/
-
+      
     }
+
+    @Override
+    public String create_table(List<SortieDto> dtos) {
+        repository.saveAll(mapper.convertSortieDtostoEntities(dtos));
+        return "la facture a été ajouté avec succes";
+    }
+    // ajouter plusieur vente
+
+
     //modifier vente
     @Override
     public String update(SortieDto dto) {
@@ -67,10 +73,14 @@ public class SortieServiceImpl implements SortieService{
             return "Le médicament n'existe pas";
     }
     @Override
-    public boolean delete(String libelle, long code) {
-        MedicamentDto medicament = mapper.convertMedicamentEntitytoDto(medicamentRepository.findByLibelle(libelle));
-        SortieKeyDto key =new SortieKeyDto(medicament.getId(), code);
-        repository.deleteById(mapper.SortieKeyDtoToEntity(key));
+    public boolean delete( long code) {
+        List<SortieDto> lst = mapper.convertSortieEntitiestoDtos(repository.findByFacture(factureRepository.findByCode(code)));
+        if( lst != null) {
+            for (int i = 0; i < lst.size(); i++) {
+                SortieKeyDto key = new SortieKeyDto(lst.get(i).getMedicament().getId(), code);
+                repository.deleteById(mapper.SortieKeyDtoToEntity(key));
+            }
+        }
         return true;
     }
     //afficher list des ventes

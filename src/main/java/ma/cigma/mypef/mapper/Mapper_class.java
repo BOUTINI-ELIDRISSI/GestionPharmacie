@@ -54,6 +54,8 @@ public interface Mapper_class {
     SortieEntity convertSortieDtotoEntity(SortieDto dto);
     SortieDto convertSortieEntitytoDto(SortieEntity entity);
     List<SortieDto> convertSortieEntitiestoDtos(List<SortieEntity> entities);
+    List<SortieEntity> convertSortieDtostoEntities(List<SortieDto> dtos);
+
     SortieKeyEntity SortieKeyDtoToEntity(SortieKeyDto cleDto);
 
 

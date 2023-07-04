@@ -46,7 +46,7 @@ public class DashboardServiceImpl implements DashboardService{
         //calcul vente de jour
 
         for (FactureDto facture : factures) {
-            Date factureDate = facture.getDate_Fact();
+            Date factureDate = facture.getDatefact();
             LocalDate factureLocalDate = factureDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             int factureDay = factureLocalDate.getDayOfMonth();
 
@@ -71,7 +71,7 @@ public class DashboardServiceImpl implements DashboardService{
         List<FactureDto> factures = mapper.convertFactEntitiestoDtos(factureRepository.findAll());
 
         for (FactureDto facture : factures) {
-            Date factureDate = facture.getDate_Fact();
+            Date factureDate = facture.getDatefact();
             LocalDate factureLocalDate = factureDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             int factureMonth = factureLocalDate.getMonthValue();
 

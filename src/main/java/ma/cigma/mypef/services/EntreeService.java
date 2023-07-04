@@ -13,4 +13,6 @@ public interface EntreeService {
     List<EntreeDto> findByMedicament(String libelle);
     List<EntreeDto> findByFournisseur(String nom);
     List<EntreeDto> findByUtilisateur(String nom);
+     EntreeDto findByLastEntree(String libelle);
+
 }

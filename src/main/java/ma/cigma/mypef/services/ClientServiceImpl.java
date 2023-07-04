@@ -58,4 +58,9 @@ public class ClientServiceImpl implements ClientService{
         return mapper.convertClientEntitytoDto(clientRepository.findByNom(nom));
     }
 
+    @Override
+    public ClientDto findByEmail(String email) {
+        return mapper.convertClientEntitytoDto(clientRepository.findByEmail(email));
+    }
+
 }
