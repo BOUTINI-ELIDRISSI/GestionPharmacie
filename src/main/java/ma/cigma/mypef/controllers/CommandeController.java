@@ -40,5 +40,21 @@ public class CommandeController {
     public List<CommandeDto> findByClient(@RequestParam("nom")String nom){
         return service.findByClient(nom);
     }
+    @GetMapping("/findByBigcode")
+    public long findByBigcode() {
+        return service.findByBigCode();
+    }
+    @GetMapping("/findNoUser")
+    public List<CommandeDto>  findByNoUser(){
+        return service.findByNoUser();
+    }
+    @GetMapping("/findWithUser")
+    public List<CommandeDto>  findByWithUser(){
+        return service.findByWithUser();
+    }
+    @GetMapping("/findByCode")
+    CommandeDto findByCode(@RequestParam("code")long code){
+        return service.findByCode(code);
+    }
 }
 

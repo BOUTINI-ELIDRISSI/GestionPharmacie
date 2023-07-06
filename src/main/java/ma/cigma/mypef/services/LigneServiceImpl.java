@@ -32,12 +32,17 @@ public class LigneServiceImpl implements LigneService{
         if(!exist){
 
             mapper.convertLigneEntitytoDto(repository.save(mapper.convertLigneDtotoEntity(dto)));
-            return "le médicament a été ajouté à la commande";
+            return "";
         }
         else
-            return "Le médicament est déjà à la commande";
+            return "";
     }
-
+    // ajouter plusieur vente
+    @Override
+    public String create_table(List<LigneDto> dtos) {
+        repository.saveAll(mapper.convertLigneDtostoEntities(dtos));
+        return "";
+    }
     @Override
     public String update(LigneDto dto) {
         boolean exist = false;
@@ -49,10 +54,10 @@ public class LigneServiceImpl implements LigneService{
         if(exist){
 
             mapper.convertLigneEntitytoDto(repository.save(mapper.convertLigneDtotoEntity(dto)));
-            return "le médicament a été modifié à la commande";
+            return "";
         }
         else
-            return "Le médicament n'existe pas";
+            return "";
     }
 
     @Override

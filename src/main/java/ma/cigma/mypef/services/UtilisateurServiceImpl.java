@@ -32,7 +32,7 @@ public class UtilisateurServiceImpl implements UtilisateurService{
             return "L'utilisateur a été ajouté avec succès";
         }
         else
-            return "L'utilisateur existe déjà";
+            return "";
     }
 
     @Override
@@ -40,16 +40,16 @@ public class UtilisateurServiceImpl implements UtilisateurService{
         UtilisateurDto user = mapper.convertUserEntitytoDto(repository.findByNom(dto.getNom()));
         if(user != null){
             mapper.convertUserEntitytoDto(repository.save(mapper.convertUserDtotoEntity(dto)));
-            return "L'utilisateur a été modifié avec succès";
+            return "";
         }
         else
-            return "L'utilisateur n'existe pas";
+            return "";
     }
 
     @Override
     public String delete(long id) {
         repository.deleteById(id);
-        return "L'utilisateur a été supprimé avec succès";
+        return "";
     }
 
     @Override

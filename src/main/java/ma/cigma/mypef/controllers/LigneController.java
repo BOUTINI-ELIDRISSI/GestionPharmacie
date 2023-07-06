@@ -22,6 +22,10 @@ public class LigneController {
     public String create(@RequestBody LigneDto dto){
         return  service.create(dto);
     }
+    @PostMapping("/create_table")
+    public String create_table(@RequestBody List<LigneDto> dtos){
+        return  service.create_table(dtos);
+    }
     @PutMapping("/update")
     public String update(@RequestBody LigneDto dto){
         return service.update(dto);

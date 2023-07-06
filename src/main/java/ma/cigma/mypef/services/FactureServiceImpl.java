@@ -32,7 +32,7 @@ public class FactureServiceImpl implements FactureService{
     @Override
     public String create(FactureDto dto) {
         mapper.convertFactEntitytoDto(repository.save(mapper.convertFactDtotoEntity(dto)));
-        return "La facture a été ajouté avec succès";
+        return "";
     }
 
     @Override

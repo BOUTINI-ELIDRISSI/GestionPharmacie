@@ -7,6 +7,8 @@ import ma.cigma.mypef.repositories.LigneRepository;
 import ma.cigma.mypef.repositories.MedicamentRepository;
 import ma.cigma.mypef.repositories.SortieRepository;
 import org.mapstruct.factory.Mappers;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,11 +24,14 @@ public class StockServiceImpl implements StockService{
     public LigneRepository ligneRepository;
     public Mapper_class mapper = Mappers.getMapper(Mapper_class.class);
 
-    public StockServiceImpl(MedicamentRepository medicamentRepository, EntreeRepository entreeRepository, SortieRepository sortieRepository, LigneRepository ligneRepository) {
+    private JavaMailSender mailSender;
+
+    public StockServiceImpl(JavaMailSender mailSender,MedicamentRepository medicamentRepository, EntreeRepository entreeRepository, SortieRepository sortieRepository, LigneRepository ligneRepository) {
         this.medicamentRepository = medicamentRepository;
         this.entreeRepository = entreeRepository;
         this.sortieRepository = sortieRepository;
         this.ligneRepository = ligneRepository;
+        this.mailSender=mailSender;
     }
 
     @Override
@@ -89,5 +94,16 @@ public class StockServiceImpl implements StockService{
         }
 
         return lst;
+    }
+
+    ///send Email
+    public String  sendEmail(String toEmail, String subject,String body){
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("ikrambe089@gmail.com");
+        message.setTo(toEmail);
+        message.setText(body);
+        message.setSubject(subject);
+        mailSender.send(message);
+        return "";
     }
 }

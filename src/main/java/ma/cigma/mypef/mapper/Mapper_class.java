@@ -38,6 +38,8 @@ public interface Mapper_class {
     LigneEntity convertLigneDtotoEntity(LigneDto dto);
     LigneDto convertLigneEntitytoDto(LigneEntity entity);
     List<LigneDto> convertLigneEntitiestoDtos(List<LigneEntity> entities);
+    List<LigneEntity> convertLigneDtostoEntities(List<LigneDto> dtos);
+
     LigneKeyEntity LigneKeyDtoToEntity(LigneKeyDto cleDto);
 
     //Medicament

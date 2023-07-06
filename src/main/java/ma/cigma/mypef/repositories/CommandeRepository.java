@@ -12,4 +12,6 @@ import java.util.List;
 public interface CommandeRepository  extends JpaRepository<CommandeEntity, Long> {
     List<CommandeEntity> findByUtilisateur(UtilisateurEntity utilisateur);
     List<CommandeEntity> findByClient(ClientEntity client);
+    CommandeEntity findByCode(long code);
+
 }

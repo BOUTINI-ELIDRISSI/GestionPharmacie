@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface StockService {
     List<Stock> list_Stock();
+    String  sendEmail(String toEmail, String subject,String body);
 }

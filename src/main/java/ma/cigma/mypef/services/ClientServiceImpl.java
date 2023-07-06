@@ -24,10 +24,10 @@ public class ClientServiceImpl implements ClientService{
         ClientDto client = mapper.convertClientEntitytoDto(clientRepository.findByNom(dto.getNom()));
         if(client == null){
             mapper.convertClientEntitytoDto(clientRepository.save(mapper.convertClientDtotoEntity(dto)));
-            return "Le client a été ajouté avec succès";
+            return "";
         }
         else
-            return "le client existe déjà";
+            return "";
     }
 
     @Override
@@ -36,16 +36,16 @@ public class ClientServiceImpl implements ClientService{
         if(client != null){
             dto.setId(client.getId());
             mapper.convertClientEntitytoDto(clientRepository.save(mapper.convertClientDtotoEntity(dto)));
-            return "Le client a été modifié avec succès";
+            return "";
         }
         else
-            return "le client n'existe pas";
+            return "";
     }
 
     @Override
     public String delete(long id) {
         clientRepository.deleteById(id);
-        return "Le client a été supprimé avec succès";
+        return "";
     }
 
     @Override

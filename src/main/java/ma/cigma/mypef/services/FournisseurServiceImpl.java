@@ -25,10 +25,10 @@ public class FournisseurServiceImpl implements FournisseurService{
         FournisseurDto fournisseur = mapper.convertFournisseurEntitytoDto(repository.findByNom(dto.getNom()));
         if (fournisseur == null){
             mapper.convertFournisseurEntitytoDto(repository.save(mapper.convertFournisseurDtotoEntity(dto)));
-            return "Le fournisseur a été ajouté avec succès";
+            return "";
         }
         else
-            return "Le fournisseur existe déjà";
+            return "";
     }
     //modifier fournisseur
     @Override
@@ -37,16 +37,16 @@ public class FournisseurServiceImpl implements FournisseurService{
         if (fournisseur != null){
             dto.setId(fournisseur.getId());
             mapper.convertFournisseurEntitytoDto(repository.save(mapper.convertFournisseurDtotoEntity(dto)));
-            return "Le fournisseur a été modifié avec succès";
+            return "";
         }
         else
-            return "Le fournisseur n'existe pas";
+            return "";
     }
     //supprimer fournisseur
     @Override
     public String delete(long id) {
        repository.deleteById(id);
-        return "Le fournisseur a été supprimé avec succès";
+        return "";
 
 
     }
@@ -62,6 +62,6 @@ public class FournisseurServiceImpl implements FournisseurService{
         if (dto != null)
             return dto.toString();
         else
-            return "le fournisseur n'existe pas";
+            return "";
     }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface LigneService {
     String create(LigneDto dto);
+    String create_table(List<LigneDto> dtos);
     String update(LigneDto dto);
     boolean delete(String libelle, long code);
     List<LigneDto> readAll();

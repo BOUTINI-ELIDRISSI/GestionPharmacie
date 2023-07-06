@@ -40,20 +40,19 @@ public class SortieServiceImpl implements SortieService{
         if(!exist){
 
             mapper.convertSortieEntitytoDto(repository.save(mapper.convertSortieDtotoEntity(dto)));
-            return "le médicament a été ajouté à la facture";
+            return "";
         }
         else
-            return "Le médicament est déjà à la facture";
+            return "";
 
       
     }
-
+    // ajouter plusieur vente
     @Override
     public String create_table(List<SortieDto> dtos) {
         repository.saveAll(mapper.convertSortieDtostoEntities(dtos));
-        return "la facture a été ajouté avec succes";
+        return "";
     }
-    // ajouter plusieur vente
 
 
     //modifier vente
@@ -67,10 +66,10 @@ public class SortieServiceImpl implements SortieService{
         }
         if(exist){
             mapper.convertSortieEntitytoDto(repository.save(mapper.convertSortieDtotoEntity(dto)));
-            return "le médicament a été modifier à la facture";
+            return "";
         }
         else
-            return "Le médicament n'existe pas";
+            return "";
     }
     @Override
     public boolean delete( long code) {

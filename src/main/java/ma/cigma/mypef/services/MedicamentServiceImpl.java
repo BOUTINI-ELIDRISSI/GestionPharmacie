@@ -25,7 +25,7 @@ public class MedicamentServiceImpl implements MedicamentService{
         //MedicamentDto obj =mapper.convertMedicamentEntitytoDto(repository.findByLibelle(dto.getLibelle()));
         //if(obj ==null){
             mapper.convertMedicamentEntitytoDto(repository.save(mapper.convertMedicamentDtotoEntity(dto)));
-            return "Le médicament a été ajouté avec succès";
+            return "";
         //}
        // else
           //  return "Le medicament est deja existe";
@@ -38,17 +38,17 @@ public class MedicamentServiceImpl implements MedicamentService{
         if(obj !=null){
             dto.setId(obj.getId());
             mapper.convertMedicamentEntitytoDto(repository.save(mapper.convertMedicamentDtotoEntity(dto)));
-            return "Le médicament a été modifié avec succès";
+            return "";
         }
         else
-            return "Le medicament n'existe pas";
+            return "";
     }
     //supprimer medicament by id
     @Override
     public String delete(long id) {
 
             repository.deleteById(id);
-            return "Le médicament a été supprimer avec succès";
+            return "";
 
     }
     //afficher list des medicament
